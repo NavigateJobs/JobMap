@@ -1,0 +1,1 @@
+const BottomNavHeight = 80

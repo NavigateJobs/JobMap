@@ -3,8 +3,11 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { RootStackParamList } from './types'
-import WelcomeScreen from '../screens/WelcomeScreen'
-import LoginScreen from '../screens/LoginScreen'
+import WelcomeScreen from '../screens/Welcome/WelcomeScreen'
+import LoginScreen from '../screens/Onboarding/OnboardingScreen'
+import OnboardingScreen from '../screens/Onboarding/OnboardingScreen'
+import JobsScreen from '../screens/Jobs/JobsScreen'
+import BottomTab from './bottom tab/BottomTab'
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
@@ -13,7 +16,8 @@ const NavigationStack = () => {
     <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
             <Stack.Screen name="WelcomeScreen" component={WelcomeScreen}/>
-            <Stack.Screen name="LoginScreen" component={LoginScreen}/>
+            <Stack.Screen name="OnboardingScreen" component={OnboardingScreen}/>
+            <Stack.Screen name="JobsScreen" component={BottomTab}/>
         </Stack.Navigator>
     </NavigationContainer>
   )

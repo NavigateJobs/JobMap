@@ -15,7 +15,7 @@ const ScreenLayout = ({children, insets=['top', 'bottom', 'left', 'right']} : Sc
         ...(insets.includes('bottom')) && ({paddingBottom: safeAreaInsets.bottom}),
         ...(insets.includes('left')) && ({paddingLeft: safeAreaInsets.left}),
         ...(insets.includes('right')) && ({paddingRight: safeAreaInsets.right}),
-        flex: 1
+        flex: 1,
     }
   return (
     <View style={safeAreaStyles}>
