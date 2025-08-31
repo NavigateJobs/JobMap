@@ -8,16 +8,25 @@ import LoginScreen from '../screens/Onboarding/OnboardingScreen'
 import OnboardingScreen from '../screens/Onboarding/OnboardingScreen'
 import JobsScreen from '../screens/Jobs/JobsScreen'
 import BottomTab from './bottom tab/BottomTab'
+import { useProviderAuth } from '../context/AuthProvider'
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 const NavigationStack = () => {
+  const {token} = useProviderAuth()
   return (
     <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
-            <Stack.Screen name="WelcomeScreen" component={WelcomeScreen}/>
-            <Stack.Screen name="OnboardingScreen" component={OnboardingScreen}/>
-            <Stack.Screen name="JobsScreen" component={BottomTab}/>
+          {!token ?
+            <>
+              <Stack.Screen name="WelcomeScreen" component={WelcomeScreen}/>
+              <Stack.Screen name="OnboardingScreen" component={OnboardingScreen}/>
+            </> :
+            <>
+              <Stack.Screen name="JobsScreen" component={BottomTab}/>
+            </>
+          }
+
         </Stack.Navigator>
     </NavigationContainer>
   )

@@ -13,14 +13,18 @@ import {
 } from 'react-native-safe-area-context';
 import ScreenLayout from "./src/presentation/components/ScreenLayout";
 import NavigationStack from "./src/presentation/navigation/NavigationStack";
-
+import AuthProvider from "./src/presentation/context/AuthProvider";
+import Toast from "react-native-toast-message";
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
     <SafeAreaProvider>
       <View className="flex-1">
-        <NavigationStack />
+        <AuthProvider>
+          <NavigationStack />
+          <Toast />
+        </AuthProvider>
       </View>
     </SafeAreaProvider>
   );
