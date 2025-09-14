@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { registrationAuth } from '../service/auth/registrationAuth';
+import { registrationAuth } from '../../service/auth/registrationAuth';
 
 export const useRegistration = () => {
   const [loading, setLoading] = useState(false);
