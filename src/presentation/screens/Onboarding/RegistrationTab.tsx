@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, ScrollView, Alert } from "react-native";
 import MainButton from "../../components/MainButton";
-import { validateEmail, validatePassword } from "../../hooks/useRegistrationValidation";
+import { validateEmail, validatePassword } from "../../hooks/useAuthValidation";
 import { useRegistration } from "../../../data/API/hooks/auth/useRegistration";
 import Toast from "react-native-toast-message";
 import { useProviderAuth } from "../../context/AuthProvider";

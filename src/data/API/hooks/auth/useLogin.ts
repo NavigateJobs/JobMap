@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { loginAuth } from '../../service/auth/loginAuth';
 
-export const useRegistration = () => {
+export const useLogin = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const register = async (email: string, password: string) => {
+  const login = async (email: string, password: string) => {
     setLoading(true);
     setError(null);
     try {
@@ -21,5 +21,5 @@ export const useRegistration = () => {
     }
   };
 
-  return { register, loading, error };
+  return { login, loading, error };
 };
