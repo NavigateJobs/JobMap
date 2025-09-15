@@ -4,6 +4,7 @@ export type RootStackParamList = {
     WelcomeScreen: undefined;
     OnboardingScreen: undefined;
     JobsScreen: undefined;
+    JobDetailsScreen: {jobId: string}
 }
 
 export type BottomTabRootParamList = {

@@ -3,22 +3,25 @@ import React from 'react'
 import ScreenLayout from '../../components/ScreenLayout'
 import useGetJobs from '../../../data/API/hooks/jobs/useGetJobs';
 import JobCard from '../../components/JobCard';
+import { formatDate } from '../../utils/formatDate';
+import { useNavigation } from '@react-navigation/native';
+import { UseNavigationType } from '../../navigation/types';
 
 const JobsScreen = () => {
-  const { jobs, loading, fetchJobs, limit, total } = useGetJobs()
+  const { jobs, loading, loadMore } = useGetJobs()
+  const navigation = useNavigation<UseNavigationType>()
 
-  const handleLoadMore = () => {
-    if (jobs.length < total && !loading) {
-      fetchJobs(limit + 3)
-    }
+  const handleRedirectToJob = (jobId: string) => {
+    navigation.navigate("JobDetailsScreen", {jobId})
   }
 
   return (
-    <ScreenLayout>
+    <ScreenLayout insets={['top','left','right']}>
+      <View className='flex-1 px-3'>
         <FlatList
           data={jobs}
           keyExtractor={(item) => item.external_id}
-          onEndReached={handleLoadMore}
+          onEndReached={loadMore}
           onEndReachedThreshold={0.5}
           renderItem={({ item }) => (
             <JobCard
@@ -27,14 +30,16 @@ const JobsScreen = () => {
               description={item.description}
               location={item.location}
               salary={item.salary}
-              createdAt={item.created_at}
-              onPress={() => console.log(`View Job: ${item.id}`)}
+              createdAt={formatDate(item.created_at)}
+              onPress={() => handleRedirectToJob(item.id.toString())}
             />
           )}
           showsVerticalScrollIndicator={false}
+          ListFooterComponent={
+            loading ? <ActivityIndicator size="large" color="#fff" /> : null
+          }
         />
-
-        {loading && <ActivityIndicator size={'large'} color={'#fff'} />}
+      </View>
     </ScreenLayout>
   )
 }

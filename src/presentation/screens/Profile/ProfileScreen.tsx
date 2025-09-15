@@ -7,9 +7,11 @@ import MainButton from '../../components/MainButton'
 const ProfileScreen = () => {
   const {handleLogout} = useProviderAuth()
   return (
-    <ScreenLayout>
+    <ScreenLayout insets={['top','left','right']}>
+      <View className='flex-1'>
         <Text>ProfileScreen</Text>
         <MainButton label='Log Out' onPress={handleLogout} />
+      </View>
     </ScreenLayout>
   )
 }

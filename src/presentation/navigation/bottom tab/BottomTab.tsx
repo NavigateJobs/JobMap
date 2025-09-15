@@ -39,21 +39,13 @@ const BottomTab = () => {
             },
         })}
         >
-        <Tab.Screen name="Jobs" component={JobsScreen} />
-        <Tab.Screen name="Map" component={MapScreen} />
-        <Tab.Screen name="Applications" component={ApplicationsScreen} />
-        <Tab.Screen name="Profile" component={ProfileScreen} />
+            <Tab.Screen name="Jobs" component={JobsScreen} />
+            <Tab.Screen name="Map" component={MapScreen} />
+            <Tab.Screen name="Applications" component={ApplicationsScreen} />
+            <Tab.Screen name="Profile" component={ProfileScreen} />
         </Tab.Navigator>
     </View>
   )
 }
 
-
-const styles = StyleSheet.create({
-    tabContainer: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0
-    }
-})
 export default BottomTab

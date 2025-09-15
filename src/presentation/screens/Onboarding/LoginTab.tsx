@@ -4,7 +4,7 @@ import MainButton from "../../components/MainButton";
 import { useLogin } from "../../../data/API/hooks/auth/useLogin";
 import { useProviderAuth } from "../../context/AuthProvider";
 import Toast from "react-native-toast-message";
-import { validateEmail } from "../../hooks/useAuthValidation";
+import { validateEmail } from "../../utils/authValidation";
 
 export default function LoginTab() {
   const [email, setEmail] = useState("");

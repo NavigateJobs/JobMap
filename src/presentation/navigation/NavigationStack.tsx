@@ -9,6 +9,7 @@ import OnboardingScreen from '../screens/Onboarding/OnboardingScreen'
 import JobsScreen from '../screens/Jobs/JobsScreen'
 import BottomTab from './bottom tab/BottomTab'
 import { useProviderAuth } from '../context/AuthProvider'
+import JobDetailsScreen from '../screens/Jobs/JobDetailsScreen'
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
@@ -24,6 +25,7 @@ const NavigationStack = () => {
             </> :
             <>
               <Stack.Screen name="JobsScreen" component={BottomTab}/>
+              <Stack.Screen name="JobDetailsScreen" component={JobDetailsScreen}/>
             </>
           }
 

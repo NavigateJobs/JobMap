@@ -8,13 +8,13 @@ interface JobResponse {
     total: number
 }
 
-const getJobs = async (page =1, limit = 3) => {
+const getJobs = async (limit = 3, offset = 0) => {
     try {
         const endpoint = `/jobs`
         const response = await apiClient.get<JobResponse>(endpoint, {
             params: {
                 limit,
-                page
+                offset
             }
         });
         return response.data
