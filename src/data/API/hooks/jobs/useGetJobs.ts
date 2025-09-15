@@ -10,12 +10,13 @@ const useGetJobs = (initialLimit = 5) => {
   const [limit] = useState(initialLimit) // limit is fixed per request
   const [offset, setOffset] = useState(0)
   const [total, setTotal] = useState(0)
-
+  const [search, setSearch] = useState('')
   const fetchJobs = useCallback(
-    async (newOffset = 0, append = false) => {
+    async (newOffset = 0, append = false, customSearch?: string) => {
       setLoading(true)
       try {
-        const response = await getJobs(limit, newOffset)
+        const activeSearch = customSearch ?? search
+        const response = await getJobs(limit, newOffset, activeSearch)
         if (response) {
           const { jobs: jobsData, total } = response
 
@@ -33,22 +34,29 @@ const useGetJobs = (initialLimit = 5) => {
         setLoading(false)
       }
     },
-    [limit]
+    [limit, ]
   )
 
   // Initial fetch
   useEffect(() => {
-    fetchJobs(0, false)
-  }, [fetchJobs])
+    fetchJobs(0, false, search)
+  }, [fetchJobs, search])
 
   // Public API
   const loadMore = () => {
+    if(jobs.length === 0 ) return
     if (jobs.length < total && !loading) {
-      fetchJobs(offset + limit, true) // 👈 next chunk
+      fetchJobs(offset + limit, true, search) // 👈 next chunk
     }
   }
 
-  return { jobs, error, loading, total, loadMore }
+  const refetch = (newSearch: string) => {
+    if(newSearch === '') setJobs([])
+    setSearch(newSearch)
+    fetchJobs(0, false, newSearch)
+  }
+
+  return { jobs, error, loading, total, loadMore, refetch }
 }
 
 export default useGetJobs

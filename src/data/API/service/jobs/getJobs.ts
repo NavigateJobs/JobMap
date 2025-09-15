@@ -8,13 +8,14 @@ interface JobResponse {
     total: number
 }
 
-const getJobs = async (limit = 3, offset = 0) => {
+const getJobs = async (limit = 3, offset = 0, search = '') => {
     try {
         const endpoint = `/jobs`
         const response = await apiClient.get<JobResponse>(endpoint, {
             params: {
                 limit,
-                offset
+                offset,
+                search
             }
         });
         return response.data
